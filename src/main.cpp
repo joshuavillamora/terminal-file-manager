@@ -4,7 +4,7 @@
 
 int main() {
     std::filesystem::path currentPath = "/";
-    std::vector<std::filesystem::path> directories;
+    std::vector<std::filesystem::directory_entry> entries;
     int choice;
 
     do {
@@ -14,10 +14,10 @@ int main() {
         
         for (const auto& entry : std::filesystem::directory_iterator(currentPath)) {
             std::cout << entryNumber << ". " << entry.path().filename().string();
+            entries.push_back(entry);
 
             if (entry.is_directory()) {
                 std::cout << "/";
-                directories.push_back(entry.path().filename().string());
             }
 
             entryNumber++;
@@ -28,13 +28,17 @@ int main() {
         std::cout << ">> ";
         std::cin >> choice;
 
-        if (choice > directories.size()) {
+        if (choice > entries.size()) {
             std::cout << "Invalid input.\n";
         } else {
-            currentPath /= directories[choice - 1];
+            if (entries[choice - 1].is_directory()) {
+                currentPath /= entries[choice - 1];
+            } else {
+                std::cout << "Cannot enter a file.\n";
+            }
         }
 
-        directories.clear();
+        entries.clear();
 
         if (choice == 0) {
             break;
