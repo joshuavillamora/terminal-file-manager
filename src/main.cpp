@@ -8,8 +8,6 @@ int main() {
     int choice;
 
     do {
-        std::cout << currentPath << std::endl;
-
         int entryNumber = 1;
         
         for (const auto& entry : std::filesystem::directory_iterator(currentPath)) {
