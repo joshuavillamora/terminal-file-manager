@@ -22,6 +22,8 @@ int main() {
             std::cout << '\n';
         }
 
+        std::cout << entryNumber << ". Exit\n";
+
         std::cout << "\n";
         std::cout << ">> ";
         std::cin >> choice;
