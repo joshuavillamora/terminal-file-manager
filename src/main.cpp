@@ -28,7 +28,9 @@ int main() {
         std::cout << ">> ";
         std::cin >> choice;
 
-        if (choice > entries.size()) {
+        if (choice == entryNumber) {
+            currentPath = currentPath.parent_path();
+        } else if (choice > entries.size()) {
             std::cout << "Invalid input.\n";
         } else {
             if (entries[choice - 1].is_directory()) {
