@@ -29,7 +29,12 @@ int main() {
         std::cin >> choice;
 
         if (choice == entryNumber) {
-            currentPath = currentPath.parent_path();
+            if (currentPath == "/") {
+                std::cout << "Exiting Program...\n";
+                break;
+            } else {
+                currentPath = currentPath.parent_path();
+            }
         } else if (choice > entries.size()) {
             std::cout << "Invalid input.\n";
         } else {
